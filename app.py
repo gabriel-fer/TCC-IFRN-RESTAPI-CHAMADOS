@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from blacklist import BLACKLIST
-from resources.chamado import Chamado,chamados,ModificarChamado
+from resources.chamado import Chamado,chamados,ChamadoComId
 from resources.usuario import User,UserLogin,UserRegistre,UserLogout
 from flask_jwt_extended import JWTManager
 
@@ -30,7 +30,7 @@ def token_de_acesso_invalidado(jwt_header,jwt_payload):
 
 api.add_resource(chamados,'/chamados')  
 api.add_resource(Chamado,'/chamado')
-api.add_resource(ModificarChamado,'/chamado/<string:chamado_id>')
+api.add_resource(ChamadoComId,'/chamado/<string:chamado_id>')
 api.add_resource(UserRegistre,'/cadastro')
 api.add_resource(UserLogin,'/login')
 api.add_resource(UserLogout,'/logout')

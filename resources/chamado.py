@@ -27,7 +27,7 @@ class Chamado(Resource):
         chamado.save_chamado()
         return chamado.json(),201
 
-class ModificarChamado(Resource):
+class ChamadoComId(Resource):
     
     @jwt_required()
     def put(self,chamado_id):
