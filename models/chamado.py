@@ -1,4 +1,5 @@
 from sql_alchemy import banco
+from datetime import datetime
 
 class ChamadoModel(banco.Model):
     __tablename__ = 'chamado'
@@ -15,14 +16,12 @@ class ChamadoModel(banco.Model):
 
 
 
-    def __init__(self,user,cliente,contato,relato,relato_final,data,data_fechamento,status):
+    def __init__(self,user,cliente,contato,relato,status):
         self.user = user
         self.cliente = cliente
         self.contato = contato
         self.relato = relato
-        self.relato_final = relato_final
-        self.data = data
-        self.data_fechamento = data_fechamento
+        self.data = datetime.today().strftime('%Y-%m-%d %H:%M')
         self.status =  status
     def json(self):
         return{
@@ -31,6 +30,8 @@ class ChamadoModel(banco.Model):
             'cliente':self.cliente,
             'contato':self.contato,
             'relato':self.relato,
+            'data':self.data,
+            'data_fechamento':self.data_fechamento,
             'relato_final':self.relato_final,
             'status':self.status
         }
@@ -44,12 +45,8 @@ class ChamadoModel(banco.Model):
         if chamado:
             return chamado
         return None
-    def update_chamado(self,user,cliente,contato,relato,relato_final,data,data_fechamento,status):
+    def update_chamado(self,user,relato_final,status):
         self.user = user
-        self.cliente = cliente
-        self.contato = contato
-        self.relato = relato
         self.relato_final = relato_final
-        self.data = data
-        self.data_fechamento = data_fechamento
+        self.data_fechamento = datetime.today().strftime('%Y-%m-%d %H:%M')
         self.status =  status
